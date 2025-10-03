@@ -1,0 +1,6 @@
+aiobotocore
+fastapi
+aiogram
+uvicorn
+sqlalchemy
+python-multipart
