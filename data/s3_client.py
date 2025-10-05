@@ -1,5 +1,7 @@
 from aiobotocore.session import get_session
 from contextlib import asynccontextmanager
+from datetime import datetime
+import uuid
 
 
 class S3Client():
@@ -19,31 +21,41 @@ class S3Client():
         async with self.session.create_client("s3", **self.config) as client:
             yield client
 
-    async def upload_file(self, object_name: str, file_data: bytes):
+    async def upload_file(self, object_name: str, file_data: bytes, user_id: int):
         async with self.get_client() as client:
             try:
                 await client.put_object(Bucket=self.bucket_name,
-                                        Key=object_name,
-                                        Body=file_data)
-                return True
-            except Exception as ex:
-                print(print(ex))
-                return False
-            
-    async def upload_custom_file(self, object_name: str, file_data: bytes):
-        async with self.get_client() as client:
-            try:
-                await client.put_object(Bucket=self.bucket_name,
-                                        Key=object_name,
+                                        Key=f"users/{user_id}/{uuid.uuid4()}:{object_name}",
                                         Body=file_data,
-                                        ContentType='text/html',
-                                        ACL='public-read')
+                                        Metadata={"user-id": str(user_id), "Created-at": str(datetime.today())})
                 return True
             except Exception as ex:
                 print(print(ex))
                 return False
-                
 
-    async def get_file(self, object_name: str):
+
+    async def get_object(self, object_name: str):
         async with self.get_client() as client:
             return client.get_object(Key=object_name)
+        
+    async def get_objects(self, user_id: int):
+        async with self.get_client() as client:
+            response = await client.list_objects_v2(
+                Bucket=self.bucket_name,
+                Prefix=f"users/{user_id}"
+            )
+            return response
+
+    # async def upload_custom_file(self, object_name: str, file_data: bytes):
+    #     async with self.get_client() as client:
+    #         try:
+    #             await client.put_object(Bucket=self.bucket_name,
+    #                                     Key=object_name,
+    #                                     Body=file_data,
+    #                                     ContentType='text/html',
+    #                                     ACL='public-read')
+    #             return True
+    #         except Exception as ex:
+    #             print(print(ex))
+    #             return False
+            
