@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* чтобы padding и border учитывались внутри width/height */
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden; /* убираем горизонтальный скролл */
+    background-color: aquamarine;
+}
+
+.main-window {
+    min-height: 100vh;
+    width: 100%;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* центрирование по горизонтали */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+header {
+    font-size: 40px;
+    font-family: "BBH Sans Bartle";
+    padding: 30px;
+    background-color: blueviolet;
+    width: 100%;
+    text-align: left;
+}
+
+.landing {
+    font-family: "Rubik Mono One";
+    font-size: 40px;
+    font-weight: 400;
+    margin: 50px 0;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+
+    margin: 20px 0;
+}
+
+.buttons button {
+    font-family: "Rubik Mono One";
+    font-weight: 400;
+    transition: all 0.3s;
+    cursor: pointer;
+    width: 350px;
+    height: 50px;
+    background-color: rgb(112, 164, 237);
+    box-shadow: 5px 5px rgb(0, 0, 0);
+    border: 2px solid black;
+}
+
+.buttons button:hover {
+    box-shadow: 0 0;
+    background-color: rgb(224, 176, 246);
+}
+
+.example {
+    font-family: "Rubik Mono One";
+    font-size: 25px;
+    font-weight: 400;
+    margin-top: 200px;
+}
+
+.example-txt {
+    text-align: center;
+}
+
+.example-video {
+    padding-top: 20px;
+    border-radius: 30px;
+    width: 320px;
+    height: 520px;
+    text-align: center;
+    z-index: 5;
+    background-color: rgb(206, 114, 249);
+}
+
+.example-video video {
+    border-radius: 20px;
+}

@@ -45,17 +45,3 @@ class S3Client():
                 Prefix=f"users/{user_id}"
             )
             return response
-
-    # async def upload_custom_file(self, object_name: str, file_data: bytes):
-    #     async with self.get_client() as client:
-    #         try:
-    #             await client.put_object(Bucket=self.bucket_name,
-    #                                     Key=object_name,
-    #                                     Body=file_data,
-    #                                     ContentType='text/html',
-    #                                     ACL='public-read')
-    #             return True
-    #         except Exception as ex:
-    #             print(print(ex))
-    #             return False
-            
