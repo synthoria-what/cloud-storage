@@ -4,6 +4,7 @@ from datetime import datetime
 import uuid
 
 
+
 class S3Client():
     def __init__(self,
                  secret_key: str,
@@ -25,9 +26,11 @@ class S3Client():
         async with self.get_client() as client:
             try:
                 await client.put_object(Bucket=self.bucket_name,
-                                        Key=f"users/{user_id}/{uuid.uuid4()}:{object_name}",
+                                        Key=f"users/{user_id}/{object_name}",
                                         Body=file_data,
-                                        Metadata={"user-id": str(user_id), "Created-at": str(datetime.today())})
+                                        Metadata={"user-id": str(user_id), 
+                                                  "Created-at": str(datetime.today())
+                                                  })
                 return True
             except Exception as ex:
                 print(print(ex))

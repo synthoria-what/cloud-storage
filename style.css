@@ -85,11 +85,3 @@ body{
 .prev_video:hover, .next_video:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
-
-/* .video-persiki {
-    margin-top: 20px;
-    border-radius: 20px;
-    width: 396px;
-    height: 700px;
-    object-fit: cover; /* Добавить для правильного отображения 
-} */
