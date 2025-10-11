@@ -4,3 +4,4 @@ aiogram
 uvicorn
 sqlalchemy
 python-multipart
+asyncpg

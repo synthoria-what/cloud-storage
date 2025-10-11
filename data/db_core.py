@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 from sqlalchemy.orm import DeclarativeBase
 
 
-engine = create_async_engine("postgres+asyncpg://postgres:pass@localhost:5432/cloud_storage_db")
+engine = create_async_engine("postgresql+asyncpg://postgres:pass@localhost:5432/cloud_storage_db", echo=True)
 local_session = async_sessionmaker(bind=engine)
 
 class Base(DeclarativeBase): pass
