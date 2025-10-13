@@ -9,7 +9,7 @@ local_session = async_sessionmaker(bind=engine)
 class Base(DeclarativeBase): pass
 
 
-async def get_db():
+async def get_session():
     db = local_session()
     try:
         yield db
