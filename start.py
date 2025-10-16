@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from routers import routers
+from data.models.users import User
 from data.db_core import init_db
 from contextlib import asynccontextmanager
-from data.models import users
 import asyncio
+
 
 
 @asynccontextmanager
@@ -13,7 +14,6 @@ async def lifespan(app: FastAPI):
     yield
     print("Бд закрыта")
 
-
 app = FastAPI(lifespan=lifespan)
 for router in routers:
     app.include_router(router)
@@ -21,4 +21,4 @@ for router in routers:
 
 @app.get("/")
 async def start():
-    return {"status": "ok"}
+    return {"status": "ok"} 

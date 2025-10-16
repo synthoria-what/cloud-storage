@@ -1,9 +1,9 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncAttrs, AsyncSession
 from sqlalchemy.orm import DeclarativeBase
 
-
 # engine = create_async_engine("postgres+asyncpg://postgres:pass@localhost:5432/cloud_storage_db")
 engine = create_async_engine("sqlite+aiosqlite:///cloud_storage.db")
+
 local_session = async_sessionmaker(bind=engine)
 
 class Base(DeclarativeBase): pass
