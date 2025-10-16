@@ -5,3 +5,5 @@ uvicorn
 sqlalchemy
 python-multipart
 asyncpg
+aiosqlite
+alembic

@@ -3,18 +3,21 @@ from routers import routers
 from data.models.users import User
 from data.db_core import init_db
 from contextlib import asynccontextmanager
+import asyncio
+
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("database initialise")
+    print("Бд инициализируется")
     await init_db()
     yield
-    print("database close")
+    print("Бд закрыта")
 
 app = FastAPI(lifespan=lifespan)
 for router in routers:
     app.include_router(router)
+
 
 @app.get("/")
 async def start():
