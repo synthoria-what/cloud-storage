@@ -1,19 +1,24 @@
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncAttrs
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncAttrs, AsyncSession
 from sqlalchemy.orm import DeclarativeBase
 
 
+<<<<<<< HEAD
 engine = create_async_engine("postgresql+asyncpg://postgres:pass@localhost:5432/cloud_storage_db", echo=True)
+=======
+# engine = create_async_engine("postgres+asyncpg://postgres:pass@localhost:5432/cloud_storage_db")
+engine = create_async_engine("sqlite+aiosqlite:///cloud_storage.db")
+>>>>>>> origin
 local_session = async_sessionmaker(bind=engine)
 
 class Base(DeclarativeBase): pass
 
 
-async def get_db():
+async def get_session() -> AsyncSession:
     db = local_session()
     try:
         yield db
     finally:
-        db.close()
+        await db.close()
     
 async def init_db():
     async with engine.begin() as conn:
